@@ -54,11 +54,6 @@ def uniToPoisson(r: float, p_sums: list) -> int:
     return next(p_val for p_val, p_sum in enumerate(p_sums) if r <= p_sum)
 
 
-def uniValuesToPoissonValues(uni_values: list) -> list:
-    p_sums = poissonSum(22)
-    return [uniToPoisson(uni_value, p_sums) for uni_value in uni_values]
-
-
 def genPoissonValues(num_to_gen, lmbda):
     p_sums = poissonSum(100, lmbda)
     uni_values = genUniformValues(num_to_gen)
@@ -71,7 +66,6 @@ def simulate_queue_arrivals(times, mean, target):
         if i == target:
             count_target = count_target + 1
     print("The simulated probability in "+str(times)+" times is: "+str(count_target/times))
-
 
 
 def main():
