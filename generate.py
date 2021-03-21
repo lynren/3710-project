@@ -35,3 +35,12 @@ def poissonSum(x):
         res.append(p_i + sum_)
         sum_ += p_i
     return res
+
+
+def uniToPoisson(r, p_sums):
+    return next(p_val for p_val, p_sum in enumerate(p_sums) if r <= p_sum)
+
+
+def uniValuesToPoissonValues(uni_values):
+    p_sums = poissonSum(22)
+    return [uniToPoisson(uni_value, p_sums) for uni_value in uni_values]
