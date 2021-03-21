@@ -71,3 +71,17 @@ def simulate_queue_arrivals(times, mean, target):
         if i == target:
             count_target = count_target + 1
     print("The simulated probability in "+str(times)+" times is: "+str(count_target/times))
+
+
+
+def main():
+    times = input ("Enter number of runs:")
+    print(times)
+    mean = input("Enter the mean value of arrival : ")
+    print(mean)
+    target = input("Enter the target value : ")
+    print(target)
+    simulate_queue_arrivals(times, mean, target)
+
+if __name__ == "__main__":
+    main()
