@@ -23,12 +23,12 @@ def genExponentialValues(lmbda, num_to_generate):
     return [(-1/lmbda) * np.log(1-u) for u in uniform_values]
 
 
-def poisson(x: int) -> float:
+def poisson(x: int, lmbda: float) -> float:
     """Computes poisson value of x"""
-    return (2**x * math.exp(-2)) / math.factorial(x)
+    return (lmbda**x * math.exp(-lmbda)) / math.factorial(x)
 
 
-def poissonSum(x: int) -> list:
+def poissonSum(x: int, lmbda: float) -> list:
     """Computes Poisson summation
 
     Parameters
@@ -44,7 +44,7 @@ def poissonSum(x: int) -> list:
     sum_ = 0
     res = []
     for i in range(x+1):
-        p_i = poisson(i)
+        p_i = poisson(i, lmbda)
         res.append(p_i + sum_)
         sum_ += p_i
     return res
@@ -57,3 +57,17 @@ def uniToPoisson(r: float, p_sums: list) -> int:
 def uniValuesToPoissonValues(uni_values: list) -> list:
     p_sums = poissonSum(22)
     return [uniToPoisson(uni_value, p_sums) for uni_value in uni_values]
+
+
+def genPoissonValues(num_to_gen, lmbda):
+    p_sums = poissonSum(100, lmbda)
+    uni_values = genUniformValues(num_to_gen)
+    return [uniToPoisson(uni_value, p_sums) for uni_value in uni_values]
+
+def simulate_queue_arrivals(times, mean, target):
+    count_target = 0
+    poisson_values = genPoissonValues(times, mean)
+    for i in poisson_values:
+        if i == target:
+            count_target = count_target + 1
+    print("The simulated probability in "+str(times)+" times is: "+str(count_target/times))
