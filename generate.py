@@ -1,6 +1,6 @@
-import numpy as np
 import math
 import random
+import numpy as np
 
 def genUniformValues(num_to_generate):
     a = 16807
@@ -19,6 +19,19 @@ def genUniformValues(num_to_generate):
 
 
 def genExponentialValues(lmbda, num_to_generate):
-    #lmbda = 67
     uniform_values = genUniformValues(num_to_generate)
     return [(-1/lmbda) * np.log(1-u) for u in uniform_values]
+
+
+def poisson(x):
+    return (2**x * math.exp(-2)) / math.factorial(x)
+
+
+def poissonSum(x):
+    sum_ = 0
+    res = []
+    for i in range(x+1):
+        p_i = poisson(i)
+        res.append(p_i + sum_)
+        sum_ += p_i
+    return res
