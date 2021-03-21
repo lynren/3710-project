@@ -29,7 +29,7 @@ def poisson(x: int) -> float:
 
 
 def poissonSum(x: int) -> list:
-    """Computers Poisson summation
+    """Computes Poisson summation
 
     Parameters
     ----------
