@@ -7,7 +7,7 @@ def genUniformValues():
     x_prev = 61
     values = []
 
-    for i in range(1, 100):
+    for i in range(100):
         x = (a*x_prev + e) % m
         values.append(x / m)
         x_prev = x
