@@ -75,11 +75,11 @@ def simulate_queue_arrivals(times, mean, target):
 
 
 def main():
-    times = input ("Enter number of runs:")
+    times = int(input("Enter number of runs:"))
     print(times)
-    mean = input("Enter the mean value of arrival : ")
+    mean = int(input("Enter the mean value of arrival : "))
     print(mean)
-    target = input("Enter the target value : ")
+    target = int(input("Enter the target value : "))
     print(target)
     simulate_queue_arrivals(times, mean, target)
 
