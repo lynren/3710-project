@@ -23,11 +23,24 @@ def genExponentialValues(lmbda, num_to_generate):
     return [(-1/lmbda) * np.log(1-u) for u in uniform_values]
 
 
-def poisson(x):
+def poisson(x: int) -> float:
+    """Computes poisson value of x"""
     return (2**x * math.exp(-2)) / math.factorial(x)
 
 
-def poissonSum(x):
+def poissonSum(x: int) -> list:
+    """Computers Poisson summation
+
+    Parameters
+    ----------
+    x : int
+        The summation upper bound
+
+    Returns
+    -------
+    list
+        a list of sums L such that L[i] = summation_(i=0)^x poisson(i)
+    """
     sum_ = 0
     res = []
     for i in range(x+1):
@@ -37,10 +50,10 @@ def poissonSum(x):
     return res
 
 
-def uniToPoisson(r, p_sums):
+def uniToPoisson(r: float, p_sums: list) -> int:
     return next(p_val for p_val, p_sum in enumerate(p_sums) if r <= p_sum)
 
 
-def uniValuesToPoissonValues(uni_values):
+def uniValuesToPoissonValues(uni_values: list) -> list:
     p_sums = poissonSum(22)
     return [uniToPoisson(uni_value, p_sums) for uni_value in uni_values]
